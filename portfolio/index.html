@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mst. Mahabuba Akther Mim - Cybersecurity Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Dark Theme (Default) */
+        body.dark-theme {
+            background: #121212;
+            color: #FFFFFF;
+        }
+
+        body.dark-theme .sidebar,
+        body.dark-theme .top-nav,
+        body.dark-theme .resume-section .entry,
+        body.dark-theme .certifications-grid .entry,
+        body.dark-theme .projects-grid .entry,
+        body.dark-theme #contact input,
+        body.dark-theme #contact textarea {
+            background: #1E1E1E;
+        }
+
+        body.dark-theme .sidebar .contact-info p::before {
+            background: #00BFFF;
+        }
+
+        body.dark-theme .sidebar .social-links a,
+        body.dark-theme .top-nav ul li a,
+        body.dark-theme section h2,
+        body.dark-theme .resume-section h3 {
+            color: #00BFFF;
+        }
+
+        body.dark-theme .sidebar .social-links a:hover,
+        body.dark-theme .top-nav ul li a:hover {
+            color: #FFFFFF;
+        }
+
+        body.dark-theme .sidebar p,
+        body.dark-theme .resume-section .entry p,
+        body.dark-theme .certifications-grid .entry p,
+        body.dark-theme .projects-grid .entry p {
+            color: #A0AEC0;
+        }
+
+        body.dark-theme .skills-list .progress-bar,
+        body.dark-theme #contact button {
+            background: #00BFFF;
+            color: #121212;
+        }
+
+        body.dark-theme .skills-list .progress {
+            background: #FFC107;
+        }
+
+        body.dark-theme #contact input,
+        body.dark-theme #contact textarea {
+            border: 1px solid #00BFFF;
+        }
+
+        body.dark-theme #contact button:hover {
+            background: #FFFFFF;
+        }
+
+        body.dark-theme .resume-section h3,
+        body.dark-theme .theme-toggle {
+            border-bottom: 2px solid #00BFFF;
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            background: #F5F5F5;
+            color: #333333;
+        }
+
+        body.light-theme .sidebar,
+        body.light-theme .top-nav,
+        body.light-theme .resume-section .entry,
+        body.light-theme .certifications-grid .entry,
+        body.light-theme .projects-grid .entry,
+        body.light-theme #contact input,
+        body.light-theme #contact textarea {
+            background: #E0E0E0;
+        }
+
+        body.light-theme .sidebar .contact-info p::before {
+            background: #00BFFF;
+        }
+
+        body.light-theme .sidebar .social-links a,
+        body.light-theme .top-nav ul li a,
+        body.light-theme section h2,
+        body.light-theme .resume-section h3 {
+            color: #00BFFF;
+        }
+
+        body.light-theme .sidebar .social-links a:hover,
+        body.light-theme .top-nav ul li a:hover {
+            color: #333333;
+        }
+
+        body.light-theme .sidebar p,
+        body.light-theme .resume-section .entry p,
+        body.light-theme .certifications-grid .entry p,
+        body.light-theme .projects-grid .entry p {
+            color: #666666;
+        }
+
+        body.light-theme .skills-list .progress-bar,
+        body.light-theme #contact button {
+            background: #00BFFF;
+            color: #333333;
+        }
+
+        body.light-theme .skills-list .progress {
+            background: #FFC107;
+        }
+
+        body.light-theme #contact input,
+        body.light-theme #contact textarea {
+            border: 1px solid #00BFFF;
+            color: #333333;
+        }
+
+        body.light-theme #contact button:hover {
+            background: #333333;
+            color: #FFFFFF;
+        }
+
+        body.light-theme .resume-section h3,
+        body.light-theme .theme-toggle {
+            border-bottom: 2px solid #00BFFF;
+        }
+
+        /* General Styles */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        .sidebar {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .sidebar .profile-pic {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .sidebar h1 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.3rem;
+            color: #00BFFF;
+            margin-bottom: 10px;
+        }
+
+        .sidebar .contact-info {
+            margin: 15px 0;
+        }
+
+        .sidebar .contact-info p {
+            font-size: 0.8rem;
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .sidebar .contact-info p::before {
+            content: '';
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+        }
+
+        .sidebar .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .sidebar .social-links a {
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .main-content {
+            padding: 15px;
+            width: 100%;
+            position: relative;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #00BFFF;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            padding-bottom: 2px;
+            transition: color 0.3s;
+        }
+
+        .top-nav {
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .top-nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .top-nav ul li {
+            margin: 5px 10px;
+        }
+
+        .top-nav ul li a {
+            text-decoration: none;
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        section {
+            padding: 40px 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section h2 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        section p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-align: center;
+        }
+
+        .resume-section {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .resume-section h3 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.5rem;
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+        }
+
+        .resume-section .entry {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 191, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .resume-section .entry:hover {
+            transform: scale(1.02);
+        }
+
+        .resume-section .entry h4 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        .resume-section .entry p {
+            font-size: 0.85rem;
+            text-align: left;
+        }
+
+        .skills-list {
+            max-width: 800px;
+            margin: 15px auto;
+        }
+
+        .skills-list .skill {
+            margin-bottom: 15px;
+        }
+
+        .skills-list .skill label {
+            display: block;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .skills-list .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #2E2E2E;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skills-list .progress {
+            height: 100%;
+            transition: width 1s ease-in-out;
+        }
+
+        .certifications-grid, .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin: 0 auto;
+        }
+
+        .certifications-grid .entry, .projects-grid .entry {
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 191, 255, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .certifications-grid .entry:hover, .projects-grid .entry:hover {
+            transform: scale(1.05);
+        }
+
+        .certifications-grid .entry h4, .projects-grid .entry h4 {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.1rem;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+
+        .certifications-grid .entry p, .projects-grid .entry p {
+            font-size: 0.85rem;
+        }
+
+        .certifications-grid .entry img {
+            width: 100%;
+            max-width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        #contact form {
+            max-width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        #contact input, #contact textarea {
+            padding: 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        #contact button {
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        /* Tablet and Desktop Adjustments */
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+
+            .sidebar {
+                width: 250px;
+                height: 100vh;
+                position: fixed;
+            }
+
+            .main-content {
+                margin-left: 250px;
+                padding: 20px;
+            }
+
+            .sidebar .profile-pic {
+                width: 100px;
+                height: 100px;
+            }
+
+            .sidebar h1 {
+                font-size: 1.5rem;
+            }
+
+            .sidebar p {
+                font-size: 0.9rem;
+            }
+
+            .sidebar .contact-info p {
+                font-size: 0.9rem;
+            }
+
+            .sidebar .social-links a {
+                font-size: 1.2rem;
+            }
+
+            .top-nav ul li {
+                margin: 0 15px;
+            }
+
+            .top-nav ul li a {
+                font-size: 1rem;
+            }
+
+            .theme-toggle {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+
+            section h2 {
+                font-size: 2.5rem;
+            }
+
+            section p {
+                font-size: 1rem;
+            }
+
+            .resume-section h3 {
+                font-size: 1.8rem;
+            }
+
+            .resume-section .entry {
+                padding: 20px;
+            }
+
+            .resume-section .entry h4 {
+                font-size: 1.2rem;
+            }
+
+            .resume-section .entry p {
+                font-size: 0.9rem;
+            }
+
+            .skills-list .skill label {
+                font-size: 1rem;
+            }
+
+            .skills-list .progress-bar {
+                height: 12px;
+            }
+
+            .certifications-grid .entry h4, .projects-grid .entry h4 {
+                font-size: 1.2rem;
+            }
+
+            .certifications-grid .entry p, .projects-grid .entry p {
+                font-size: 0.9rem;
+            }
+
+            #contact form {
+                max-width: 600px;
+            }
+
+            #contact input, #contact textarea {
+                padding: 10px;
+                font-size: 1rem;
+            }
+        }
+
+
+        /* Desktop Adjustments */
+        @media (min-width: 1024px) {
+            .sidebar {
+                width: 300px;
+            }
+
+            .main-content {
+                margin-left: 300px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <div class="sidebar">
+            <img src="pic.jpg" alt="Profile Picture" class="profile-pic">
+            <h1>Mst. Mahabuba Akther Mim</h1>
+            <p>Aspiring Cybersecurity Professional</p>
+            <div class="contact-info">
+                <p>Email: pentester.mahabubamim@gmail.com</p>
+                <p>Location: Dhaka, Bangladesh</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+            <nav class="top-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <section id="about">
+                <h2>About Me</h2>
+                <p>I'm Mst. Mahabuba Akther Mim, an aspiring cybersecurity professional eager to start a career in information security. I’ve completed a cybersecurity certification from Byte Capsule, gaining basic knowledge of network security, access control, and risk assessment. Currently pursuing a BSc in Computer Science and Engineering at Uttara University, I’m seeking opportunities to apply my learning in a real-world setting and grow as a cybersecurity specialist.</p>
+                <p>My experience spans penetration testing, data management, and administrative roles, where I’ve developed strong analytical and problem-solving skills. I’m passionate about ethical hacking, securing digital environments, and continuously learning about the evolving cybersecurity landscape.</p>
+            </section>
+
+            <section id="resume">
+                <h2>Resume</h2>
+                <div class="resume-section">
+                    <h3>Experience</h3>
+                    <div class="entry">
+                        <h4>Junior Penetration Tester Intern</h4>
+                        <p>Byte Capsule | April 2025 - Present</p>
+                        <p>I am currently enrolled as a Cybersecurity Intern at Byte Capsule IT, where I am undergoing a hands-on, training-based internship focused on real-world information security practices and methodologies. This program is enhancing my technical knowledge and professional development in several key areas. I am learning to maintain professionalism and effective communication within a cybersecurity environment. The training includes bug hunting techniques, focusing on OWASP Top 10 vulnerabilities and reconnaissance strategies. I have also been introduced to the basics of Security Operations Center (SOC) operations and SIEM tools. Additionally, I am gaining foundational knowledge of ISO/IEC 27001 audits, including risk assessment and compliance practices. The internship covers essential cloud security concepts such as common threats and defense mechanisms, along with the integration of AI in cybersecurity, giving me a solid understanding of modern InfoSec trends and challenges.</p>
+                    </div>
+                    <div class="entry">
+                        <h4>Data Entry & Management Officer</h4>
+                        <p>Cadzone, Gazipur | January 2025 - Present</p>
+                        <p>As a Data Entry & Management Officer at Cadzone, I am responsible for managing and entering data for student ID cards across various schools and colleges. My work involves ensuring the accuracy and consistency of large volumes of data, organizing databases, and maintaining school and college management systems. I work closely with technical and administrative teams to streamline data workflows and ensure that all records are precise and up-to-date, contributing to the smooth functioning of educational institutions.</p>
+                    </div>
+                    <div class="entry">
+                        <h4>Admission Officer</h4>
+                        <p>CTT Polytechnic Institute, Gazipur | June 2024 - December 2024</p>
+                        <p>During my time as an Admission Officer at CTT Polytechnic Institute, I was actively involved in the entire student admission process, including reviewing applications, verifying eligibility, and finalizing enrollments. I maintained and updated accurate student records and handled admission-related inquiries, both in-person and online. Through regular communication with students and guardians, I developed strong interpersonal and communication skills. I also supported the promotional activities of the institute, helping to increase student enrollment and improve the overall admission experience.</p>
+                    </div>
+
+                    <h3>Education</h3>
+                    <div class="entry">
+                        <h4>BSc in Computer Science and Engineering</h4>
+                        <p>Uttara University | July 2024 - Present</p>
+                    </div>
+                    <div class="entry">
+                        <h4>Diploma in Computer Technology</h4>
+                        <p>Model Institute of Science and Technology | August 2019 - December 2023</p>
+                        <p>Completed</p>
+                    </div>
+
+                    <h3>Skills</h3>
+                    <div class="skills-list">
+                        <div class="skill">
+                            <label>Network Security & Ethical Hacking - 90%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label>Penetration Testing & Vulnerability Assessment - 90%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label>Wireshark - 75%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label>Metasploit - 80%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label>Burp Suite - 75%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label>Kali Linux - 85%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <label>Active Directory Security - 70%</label>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="projects">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="entry">
+                        <h4>Penetration Testing Project</h4>
+                        <p>Conducted a simulated attack on a web application to identify vulnerabilities. <a href="assets/pdfs/penetration-testing-report.pdf" target="_blank">View Report</a></p>
+                    </div>
+                    <div class="entry">
+                        <h4>Network Security Audit</h4>
+                        <p>Analyzed network configurations for potential risks. <a href="assets/pdfs/network-security-audit-report.pdf" target="_blank">View Report</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="certifications">
+                <h2>Certifications</h2>
+                <div class="certifications-grid">
+                    <div class="entry">
+                        <h4>Ethical Hacking for Professional</h4>
+                        <p>Byte Capsule</p>
+                        <img src="certificate-2.png" alt="Certificate 1">
+                    </div>
+                    <div class="entry">
+                        <h4>Cyber Security</h4>
+                        <p>Arena Web Security</p>
+                        <img src="certificate-1.png" alt="Certificate 2">
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            if (body.classList.contains('dark-theme')) {
+                body.classList.remove('dark-theme');
+                body.classList.add('light-theme');
+            } else {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+            }
+        }
+    </script>
+</body>
+</html>
